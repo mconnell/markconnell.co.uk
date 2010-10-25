@@ -40,7 +40,7 @@ Rails.root</code></pre>
 
 <p>These methods aren&#8217;t new with Rails 3 but if you haven&#8217;t been used them much, <code>Rails.env</code> and <code>Rails.root</code> have some additional features that are quite handy.</p>
 
-<h3 id='id13'><code>Rails.env</code></h3>
+<h3 id='id1'><code>Rails.env</code></h3>
 
 <p>Rails.env returns a string with the name of the environment Rails is loaded with:</p>
 
@@ -59,7 +59,7 @@ Rails.env.production?
 Rails.env.a_non_existing_environment?
 #&gt; false</code></pre>
 
-<h3 id='id14'><code>Rails.root</code></h3>
+<h3 id='id2'><code>Rails.root</code></h3>
 
 <p>Rails.root returns a <code>Pathname</code> object (Ruby Core). <code>Pathname</code> objects mix together the functionality of <code>File</code>, <code>FileTest</code>, along with bits of <code>Dir</code> and <code>FileUtils</code>, allowing to shortcut and not use methods like <code>File.join</code> but instead:</p>
 
