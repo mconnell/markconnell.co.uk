@@ -59,6 +59,7 @@ The `root_url` your app points to eg. `http://localhost:3000/`
     root :to => 'posts#index'
 
 Namespaced root mappings eg. `http://localhost:3000/admin`
+
     # Rails 2
     map.namespace :admin do |admin|
       admin.root :controller => 'posts'
@@ -75,7 +76,8 @@ One thing to note is that if you are defining a root mapping in a namespace, it 
 Allows a mapping to be associated with multiple routes eg: `/posts/2010` and `/posts/2010/02`
 
     # Rails 2
-    map.connect 'posts/:year/:month', :controller => 'posts', :month => nil, :requirements => { :year => /\d{4}/ }
+    map.connect 'posts/:year/:month', :controller => 'posts',
+                :month => nil, :requirements => { :year => /\d{4}/ }
 
     # Rails 3
     match 'posts/:year(/:month)' => 'posts#index', :constraints => { :year => /\d{4}/ }

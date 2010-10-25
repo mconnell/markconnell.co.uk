@@ -1,7 +1,7 @@
 /* Geez you must be pretty bored to be looking at this */
 
 body{
-  margin: 0;
+  margin: 0 0 2em 0;
   padding: 0;
   font-family: "Gill Sans";
   font-weight: 300;
@@ -34,6 +34,7 @@ h3{
   font-weight: 300;
   margin: 0 0 0 0;
   padding: 0;
+  font-size: 1.4em;
 }
 
 p{
@@ -43,6 +44,7 @@ p{
 
 .header{
   text-align: center;
+  padding-bottom: 1em;
 }
 
 .footer{
@@ -62,3 +64,12 @@ p{
   position: relative;
   padding: 1em;
 }
+
+pre{
+  border: 1px solid blue;
+  padding: 1em;
+  background-color: #F8F8FF;
+  border: 1px solid #ccc;
+}
+
+.right{ float: right;}
