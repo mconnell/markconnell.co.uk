@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Rails 3: Script Commands - Mark Connell</title>
+    <meta name="author" content="Mark Connell" />
+    <link rel="stylesheet" href="/styles.css" type="text/css" />
+
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-2210905-12']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+  </head>
+  <body>
+    <div class="header">
+      <h1>Mark Connell</h1>
+      <a href="/">Posts</a> - <a href="/about">About</a>
+    </div>
+    <div class="content">
+  <h2>Rails 3: Script Commands</h2>
+  <p>One of the new changes introduced in Rails 3 is a rework of the rails script commands. Command-line scripts have been pushed into the railties gem and streamlined into a new, more generic <code>script/rails</code> command.</p>
+
+<p>Previously (pre Rails 3), to do things like loading a console you would do the following:</p>
+
+<pre><code>script/console</code></pre>
+
+<p>This has now changed to:</p>
+
+<pre><code>script/rails console</code></pre>
+
+<p>The script command can actually be shortened to just <code>rails</code>, eg:</p>
+
+<pre><code>rails console</code></pre>
+
+<p>And additionally, the most popular commands have shortcuts:</p>
+
+<pre><code>rails c  # rails console</code></pre>
+
+<h3 id='list_of_commands'>List of Commands</h3>
+
+<p>Lifted straight from the <code>--help</code> option, this is a list of the commands available:</p>
+
+<pre><code>generate     Generate new code (short-cut alias: &quot;g&quot;)
+console      Start the Rails console (short-cut alias: &quot;c&quot;)
+server       Start the Rails server (short-cut alias: &quot;s&quot;)
+dbconsole    Start a console for the database specified in config/database.yml
+             (short-cut alias: &quot;db&quot;)
+application  Generate the Rails application code
+destroy      Undo code generated with &quot;generate&quot;
+benchmarker  See how fast a piece of code runs
+profiler     Get profile information from a piece of code
+plugin       Install a plugin
+runner       Run a piece of code in the application environment</code></pre>
+
+<h3 id='specific_environments'>Specific environments</h3>
+
+<p>Similar to the previous version of the script system, you can pass the environment as an additional argument, eg:</p>
+
+<pre><code>script/rails console test
+RAILS_ENV=test script/rails console</code></pre>
+</div>
+
+  </body>
+</html>

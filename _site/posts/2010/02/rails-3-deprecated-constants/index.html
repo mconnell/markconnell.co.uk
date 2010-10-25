@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Rails 3: Deprecated Constants - Mark Connell</title>
+    <meta name="author" content="Mark Connell" />
+    <link rel="stylesheet" href="/styles.css" type="text/css" />
+
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-2210905-12']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+  </head>
+  <body>
+    <div class="header">
+      <h1>Mark Connell</h1>
+      <a href="/">Posts</a> - <a href="/about">About</a>
+    </div>
+    <div class="content">
+  <h2>Rails 3: Deprecated Constants</h2>
+  <p>The following constants used in Rails have been deprecated in Rails 3:</p>
+
+<pre><code>RAILS_ENV
+RAILS_DEFAULT_LOGGER
+RAILS_ROOT</code></pre>
+
+<p>Instead, you should start using the following:</p>
+
+<pre><code>Rails.env
+Rails.logger
+Rails.root</code></pre>
+
+<p>These methods aren&#8217;t new with Rails 3 but if you haven&#8217;t been used them much, <code>Rails.env</code> and <code>Rails.root</code> have some additional features that are quite handy.</p>
+
+<h3 id='id13'><code>Rails.env</code></h3>
+
+<p>Rails.env returns a string with the name of the environment Rails is loaded with:</p>
+
+<pre><code>Rails.env
+#&gt; &quot;development&quot;</code></pre>
+
+<p>Additionally, <code>Rails.env</code> is a String wrapped inside the <code>StringEnquirer</code> class found in <code>ActiveSupport</code>. This allows for easier checking of the Rails environment like so:</p>
+
+<pre><code># When the Rails environment is &#39;development&#39;
+Rails.env.development?
+#&gt; true
+
+Rails.env.production?
+#&gt; false
+
+Rails.env.a_non_existing_environment?
+#&gt; false</code></pre>
+
+<h3 id='id14'><code>Rails.root</code></h3>
+
+<p>Rails.root returns a <code>Pathname</code> object (Ruby Core). <code>Pathname</code> objects mix together the functionality of <code>File</code>, <code>FileTest</code>, along with bits of <code>Dir</code> and <code>FileUtils</code>, allowing to shortcut and not use methods like <code>File.join</code> but instead:</p>
+
+<pre><code>Rails.root.join(&#39;app&#39;, &#39;controllers&#39;)
+#&gt; #&lt;Pathname:/Users/mark/workspaces/ruby/rails3_demo/app/controllers&gt;</code></pre>
+
+<p>If you only want the path string simply call <code>to_s</code></p>
+
+<pre><code>Rails.root.join(&#39;app&#39;, &#39;controllers&#39;).to_s
+#&gt; &quot;/Users/mark/workspaces/ruby/rails3_demo/app/controllers&quot;</code></pre>
+</div>
+
+  </body>
+</html>

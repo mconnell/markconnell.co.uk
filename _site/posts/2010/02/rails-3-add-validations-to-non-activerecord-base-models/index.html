@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Rails 3: Add validations to non-ActiveRecord::Base models - Mark Connell</title>
+    <meta name="author" content="Mark Connell" />
+    <link rel="stylesheet" href="/styles.css" type="text/css" />
+
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-2210905-12']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+  </head>
+  <body>
+    <div class="header">
+      <h1>Mark Connell</h1>
+      <a href="/">Posts</a> - <a href="/about">About</a>
+    </div>
+    <div class="content">
+  <h2>Rails 3: Add validations to non-ActiveRecord::Base models</h2>
+  <p>Prior to Rails 3, if you wanted to add validations to models which didn&#8217;t inherit from <code>ActiveRecord::Base</code>, you&#8217;d probably resort to using a gem/plugin that re-implements much of the behaviour or has some dirty hooks into the ActiveRecord private API.</p>
+
+<p>Now, the ActiveRecord internals have been re-written as modules and pushed out into the ActiveModel gem. ActiveRecord still uses these modules, only now, it is relatively straight forward to use the same logic in other classes.</p>
+
+<p>Below is a basic sample you can tryout in an irb session which includes the <code>ActiveModel::Validations</code> module:</p>
+
+<pre><code>require &#39;active_model&#39;
+
+class Place
+  include ActiveModel::Validations
+  validates_presence_of :name
+  attr_accessor :name
+end
+
+
+ place = Place.new
+ place.valid?
+ #&gt; false
+
+ place.name = &quot;le pub&quot;
+ place.valid?
+ #&gt; true</code></pre>
+
+<p>For any applications which require non-persisting models, or even models that don&#8217;t use ActiveRecord, it&#8217;s now a whole lot easier to introduce AR conventions without any pain.</p>
+</div>
+
+  </body>
+</html>

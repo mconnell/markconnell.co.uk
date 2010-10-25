@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Rails 3: Routing Examples - Mark Connell</title>
+    <meta name="author" content="Mark Connell" />
+    <link rel="stylesheet" href="/styles.css" type="text/css" />
+
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-2210905-12']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+  </head>
+  <body>
+    <div class="header">
+      <h1>Mark Connell</h1>
+      <a href="/">Posts</a> - <a href="/about">About</a>
+    </div>
+    <div class="content">
+  <h2>Rails 3: Routing Examples</h2>
+  <p>Rails 3 introduced a new routing DSL that is a little bit different from the Rails 2 version. This quick guide covers a few examples of the new routes, and how they compare to Rails 2.</p>
+
+<h3 id='simple_routes'>Simple routes</h3>
+
+<p>Create a basic route that will respond to <code>http://localhost:300/hello_world</code></p>
+
+<pre><code># Rails 2:
+map.connect &#39;hello_world&#39;, :controller =&gt; &#39;posts&#39;, :action =&gt; &#39;index&#39;
+
+# Rails 3:
+match &#39;hello_world&#39; =&gt; &#39;posts#index&#39;</code></pre>
+
+<h3 id='resources'>Resources</h3>
+
+<p>A <code>UsersController</code> that responds to the typical RESTful actions <code>/users</code>, <code>/users/123</code>, <code>/users/123/edit</code> etc.</p>
+
+<pre><code># Rails 2:
+map.resources :users
+
+# Rails 3:
+resources :users</code></pre>
+
+<p>Add additional <code>member</code> and <code>collection</code> actions to a resource. For a <code>GamesController</code>, adding a download action on a particular game (member) and a favourites action to display a list of favourite games (collection):</p>
+
+<pre><code># Rails 2
+map.resources :games, :member =&gt; { :download =&gt; :get }, :collection =&gt; { :favourites =&gt; :get }
+
+# Rails 3
+resources :games do
+  get :download,   :on =&gt; :member
+  get :favourites, :on =&gt; :collection
+end</code></pre>
+
+<p><code>member</code>/<code>collection</code> blocks are also available as an alternative to the above:</p>
+
+<pre><code># Rails 3
+resources :games do
+  member do
+    get :download
+  end
+
+  collection do
+    get :favourites
+  end
+end</code></pre>
+
+<h3 id='root_mappings'>Root mappings</h3>
+
+<p>The <code>root_url</code> your app points to eg. <code>http://localhost:3000/</code></p>
+
+<pre><code># Rails 2
+map.root :controller =&gt; &#39;posts&#39;, :action =&gt; &#39;index&#39;
+
+# Rails 3
+root :to =&gt; &#39;posts#index&#39;</code></pre>
+
+<p>Namespaced root mappings eg. <code>http://localhost:3000/admin</code></p>
+
+<pre><code># Rails 2
+map.namespace :admin do |admin|
+  admin.root :controller =&gt; &#39;posts&#39;
+end
+
+# Rails 3
+namespace :admin do
+  root :to =&gt; &quot;admin/posts#index&quot;
+end</code></pre>
+
+<p>One thing to note is that if you are defining a root mapping in a namespace, it doesn&#8217;t make any assumptions that the controller is in the same namespace in Rails 3.</p>
+
+<h3 id='optional_params'>Optional params</h3>
+
+<p>Allows a mapping to be associated with multiple routes eg: <code>/posts/2010</code> and <code>/posts/2010/02</code></p>
+
+<pre><code># Rails 2
+map.connect &#39;posts/:year/:month&#39;, :controller =&gt; &#39;posts&#39;,
+            :month =&gt; nil, :requirements =&gt; { :year =&gt; /\d{4}/ }
+
+# Rails 3
+match &#39;posts/:year(/:month)&#39; =&gt; &#39;posts#index&#39;, :constraints =&gt; { :year =&gt; /\d{4}/ }</code></pre>
+
+<p>You&#8217;ll notice that this mapping also makes use of the :constraints option rather than :requirements which would be found in a Rails 2 app.</p>
+</div>
+
+  </body>
+</html>

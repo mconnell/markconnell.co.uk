@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Installing Ruby 1.9.1 On Ubuntu 9.10 - Mark Connell</title>
+    <meta name="author" content="Mark Connell" />
+    <link rel="stylesheet" href="/styles.css" type="text/css" />
+
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-2210905-12']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+  </head>
+  <body>
+    <div class="header">
+      <h1>Mark Connell</h1>
+      <a href="/">Posts</a> - <a href="/about">About</a>
+    </div>
+    <div class="content">
+  <h2>Installing Ruby 1.9.1 On Ubuntu 9.10</h2>
+  <p>A quick guide for getting Ruby 1.9.1 installed from source on Ubuntu 9.10 (Karmic).</p>
+
+<p>Before installing Ruby, ensure you have the following packages:</p>
+
+<pre><code>apt-get install build-essential libssl-dev libreadline5 libreadline5-dev zlib1g zlib1g-dev</code></pre>
+
+<p>Download source, extract, configure, make, test and install:</p>
+
+<pre><code>mkdir ~/src &amp;&amp; cd ~/src
+wget ftp://ftp.ruby-lang.org/pub/ruby/1.9/ruby-1.9.1-p376.tar.gz
+tar -xvf ruby-1.9.1-p376.tar.gz
+cd ruby-1.9.1-p376
+./configure
+make
+make test
+make install</code></pre>
+
+<p>You&#8217;ll now have Ruby installed:</p>
+
+<pre><code>ruby -v
+&gt; ruby 1.9.1p376 (2009-12-07 revision 26041) [i686-linux]
+gem -v
+&gt; 1.3.1</code></pre>
+
+<p>The latest version of RubyGems is 1.3.5, so quickly upgrade:</p>
+
+<pre><code>gem update --system</code></pre>
+</div>
+
+  </body>
+</html>

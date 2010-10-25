@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Rails 3: Validation Reflection - Mark Connell</title>
+    <meta name="author" content="Mark Connell" />
+    <link rel="stylesheet" href="/styles.css" type="text/css" />
+
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-2210905-12']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+  </head>
+  <body>
+    <div class="header">
+      <h1>Mark Connell</h1>
+      <a href="/">Posts</a> - <a href="/about">About</a>
+    </div>
+    <div class="content">
+  <h2>Rails 3: Validation Reflection</h2>
+  <p>A recent addition to <code>ActiveModel</code> is the introduction of a couple of methods for validation reflection.</p>
+
+<p>Say we have a sample <code>Person</code> class which includes the <code>ActiveModel::Validations</code> module so we can validate a couple of attributes:</p>
+
+<pre><code>require &#39;active_model&#39;
+
+class Person
+  include ActiveModel::Validations
+  attr_accessor :name, :age
+  validates :name, :presence =&gt; true
+  validates :age,  :presence =&gt; true, :numericality =&gt; true
+end</code></pre>
+
+<p>New to <code>ActiveModel::Validations</code> is the class method <code>validators</code>, which returns an array of <code>Validator</code> objects associated with the model:</p>
+
+<pre><code>Person.validators
+#&gt; [#&lt;ActiveModel::Validations::PresenceValidator:0x101565cc8 @attributes=[:age], @options={}&gt;, 
+#   #&lt;ActiveModel::Validations::NumericalityValidator:0x101562640 @attributes=[:age],
+#       @options={:only_integer=&gt;false, :allow_nil=&gt;false}&gt;,
+#   #&lt;ActiveModel::Validations::PresenceValidator:0x1015691c0 @attributes=[:name], @options={}&gt;]</code></pre>
+
+<p>Another addition is the class method <code>validators_on</code>, which provides a convenient way of accessing the validators that are associated with a particular attribute on the model:</p>
+
+<pre><code>Person.validators_on(:name)
+#&gt; [#&lt;ActiveModel::Validations::PresenceValidator:0x1015691c0 @attributes=[:name], @options={}&gt;]
+
+Person.validators_on(:age)
+#&gt; [#&lt;ActiveModel::Validations::PresenceValidator:0x101565cc8 @attributes=[:age], @options={}&gt;,
+#   #&lt;ActiveModel::Validations::NumericalityValidator:0x101562640 @attributes=[:age],
+#       @options={:only_integer=&gt;false, :allow_nil=&gt;false}&gt;]</code></pre>
+
+<h3 id='notes'>Notes</h3>
+
+<ul>
+<li>The <code>validators</code> and <code>validators_on</code> methods are only found in activemodel-3.0.0.beta1.gem onwards.</li>
+
+<li>The specific commit that introduces these methods can be found here: http://github.com/rails/rails/commit/8f97e9d19abf02b33c5f7c0c1f1d5daf13e28893</li>
+</ul>
+</div>
+
+  </body>
+</html>
