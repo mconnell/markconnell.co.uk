@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Sublime Text 2 Config - Mark Connell</title>
+    <meta name="author" content="Mark Connell" />
+    <link rel="stylesheet" href="/styles.css" type="text/css" />
+
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-2210905-12']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+  </head>
+  <body>
+    <div class="header">
+      <h1>Mark Connell</h1>
+      <a href="/">Posts</a> - <a href="/about.html">About</a>
+    </div>
+    <div class="content">
+  <div id="post_date">29 January 2012</div>
+  <h2>My Sublime Text 2 Config</h2>
+  <p>Sublime Text 2 has been my editor of choice for about a year now. It&#8217;s a great piece of software, but gradually I&#8217;ve been adding my own config options to make it just that little bit nicer for working with on a daily basis. I like it, and the guys in the office like it enough that it&#8217;s the default config on our pairing machines at the moment.</p>
+
+<h3 id='launching_sublime_from_the_commandline'>Launching Sublime from the command-line</h3>
+
+<p>Sublime comes with a command-line tool named subl. For convenience, create a symlink to a directory that is in your <code>$PATH</code>. I have <code>/usr/local/bin</code> in my path, so I have a symlink that allows me to use <code>sublime some_file.txt</code>:</p>
+
+<pre><code>ln -s &quot;/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl&quot; /usr/local/bin/sublime</code></pre>
+
+<h3 id='bash'>Bash</h3>
+
+<p>If you want to make Sublime your default editor for things like git commit messages etc. Drop this into <code>~/.profile</code>:</p>
+
+<pre><code>export EDITOR=&#39;sublime -w&#39;</code></pre>
+
+<h3 id='user_preferences'>User Preferences</h3>
+
+<p>A summary of my preferences: Soft tabs, 2 characters wide; White on Black text theme; Auto save when window loses focus; Trim unwanted whitespace.</p>
+
+<p>Add the following snippet to <code>Preferences -&gt; File Settings - User</code>:</p>
+
+<pre><code>{
+  &quot;color_scheme&quot;: &quot;Packages/Color Scheme - Default/Twilight.tmTheme&quot;,
+  &quot;font_face&quot;: &quot;Monaco&quot;,
+  &quot;font_size&quot;: 12,
+  &quot;draw_white_space&quot;: &quot;selection&quot;,
+  &quot;trim_trailing_white_space_on_save&quot;: true,
+  &quot;tab_size&quot;: 2,
+  &quot;translate_tabs_to_spaces&quot;: true,
+  &quot;tab_completion&quot;: true,
+  &quot;save_on_focus_lost&quot;: true,
+  &quot;highlight_line&quot;: true
+}</code></pre>
+</div>
+
+  </body>
+</html>
