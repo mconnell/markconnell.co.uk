@@ -25,6 +25,7 @@
       <a href="/">Posts</a> - <a href="/about.html">About</a>
     </div>
     <div class="content">
+  <div id="post_date">22 February 2010</div>
   <h2>Rails 3: Validation Reflection</h2>
   <p>A recent addition to <code>ActiveModel</code> is the introduction of a couple of methods for validation reflection.</p>
 
@@ -42,7 +43,7 @@ end</code></pre>
 <p>New to <code>ActiveModel::Validations</code> is the class method <code>validators</code>, which returns an array of <code>Validator</code> objects associated with the model:</p>
 
 <pre><code>Person.validators
-#&gt; [#&lt;ActiveModel::Validations::PresenceValidator:0x101565cc8 @attributes=[:age], @options={}&gt;, 
+#&gt; [#&lt;ActiveModel::Validations::PresenceValidator:0x101565cc8 @attributes=[:age], @options={}&gt;,
 #   #&lt;ActiveModel::Validations::NumericalityValidator:0x101562640 @attributes=[:age],
 #       @options={:only_integer=&gt;false, :allow_nil=&gt;false}&gt;,
 #   #&lt;ActiveModel::Validations::PresenceValidator:0x1015691c0 @attributes=[:name], @options={}&gt;]</code></pre>

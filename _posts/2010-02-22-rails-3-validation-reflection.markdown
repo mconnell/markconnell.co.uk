@@ -8,7 +8,7 @@ A recent addition to `ActiveModel` is the introduction of a couple of methods fo
 Say we have a sample `Person` class which includes the `ActiveModel::Validations` module so we can validate a couple of attributes:
 
     require 'active_model'
-    
+
     class Person
       include ActiveModel::Validations
       attr_accessor :name, :age
@@ -19,7 +19,7 @@ Say we have a sample `Person` class which includes the `ActiveModel::Validations
 New to `ActiveModel::Validations` is the class method `validators`, which returns an array of `Validator` objects associated with the model:
 
     Person.validators
-    #> [#<ActiveModel::Validations::PresenceValidator:0x101565cc8 @attributes=[:age], @options={}>, 
+    #> [#<ActiveModel::Validations::PresenceValidator:0x101565cc8 @attributes=[:age], @options={}>,
     #   #<ActiveModel::Validations::NumericalityValidator:0x101562640 @attributes=[:age],
     #       @options={:only_integer=>false, :allow_nil=>false}>,
     #   #<ActiveModel::Validations::PresenceValidator:0x1015691c0 @attributes=[:name], @options={}>]
